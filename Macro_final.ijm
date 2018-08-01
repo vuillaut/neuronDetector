@@ -16,15 +16,16 @@ for (i=1; i<=nSlices; i++) {
 run("Z Project...", "projection=Median");
 // selectWindow("2.tif");
 imageCalculator("Subtract create stack", name,"MED_"+name);
+close(name);
 selectWindow("Result of " + name);
-rename("1.tif");
+rename(name);
 
 // run("Duplicate...", "title=4.tif duplicate");
 run("Gaussian Blur 3D...", "x=1 y=1 z=0.5");
 
 // run("Duplicate...", "title=5.tif duplicate");
 Stack.getStatistics(count, mean, min, max, std); 
-print(mean, min, max, std);
+// print(mean, min, max, std);
 cut = mean + 5 * std;
 
 setAutoThreshold("Triangle dark stack");
@@ -40,9 +41,10 @@ run("3D Objects Counter", "threshold=2 slice=12 min.=400 max.=10000 objects stat
 
 
 setOption("BlackBackground", false);
-run("Convert to Mask", "method=Default background=Default calculate");
+
+run("RGB Color");
 
 saveAs("Tiff", directory + name + "_objects_maps.tif");
-selectWindow("Statistics for 1.tif");
+selectWindow("Statistics for " + name);
 saveAs("Results", directory + name + "_results.csv");
 
