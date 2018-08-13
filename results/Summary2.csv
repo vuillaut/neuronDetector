@@ -1,0 +1,11 @@
+Slice,Count,Total Area,Average Size,%Area,Mean,Median
+Threshold,0,0,NaN,0.000,NaN,NaN
+Threshold,0,0,NaN,0.000,NaN,NaN
+Threshold,1,325,325.000,0.031,255,255
+Threshold,6,2361,393.500,0.225,255,255
+Threshold,14,6893,492.357,0.657,255,255
+Threshold,23,10922,474.870,1.042,255,255
+Threshold,30,14319,477.300,1.366,255,255
+Threshold,33,15871,480.939,1.514,255,255
+Threshold,37,16477,445.324,1.571,255,255
+Threshold,33,16374,496.182,1.562,255,255
