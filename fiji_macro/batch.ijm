@@ -1,14 +1,12 @@
 // "BatchProcessFolders"
 //
 // This macro batch processes all the files in a folder and any
-// subfolders in that folder. In this example, it runs the Subtract 
-// Background command of TIFF files. For other kinds of processing,
-// edit the processFile() function at the end of this macro.
+// subfolders in that folder.
+// It runs the 2d or 3d neuron counter (change it as the end)
 
-   //requires("1.33s"); 
+
 dir = getDirectory("Choose a Directory ");
 // dir = "/Volumes/LaCie/LaCie/Gcampf6/TEST/"
-
 
 setBatchMode(true);
 count = 0;
@@ -19,6 +17,7 @@ print(count + " files to process in the directory " + dir);
 processFiles(dir);
 print(count+" files processed");
 
+//\\ Function to count the number of .tif files in the directory
 function countFiles(dir) {
   list = getFileList(dir);
   for (i=0; i<list.length; i++) {
@@ -29,6 +28,7 @@ function countFiles(dir) {
   }
 }
 
+//\\ Function to go through all folders and files and lunch process
 function processFiles(dir) {
   list = getFileList(dir);
   for (i=0; i<list.length; i++) {
@@ -38,15 +38,16 @@ function processFiles(dir) {
       	 path = dir+list[i];
          processFile(path);
        	 n++;
-         print(n, " files analysed");     
+         print(n, " files analysed");
       }
   }
 }
 
+//\\ Function to process .tif files (run the macro indicated below)
 function processFile(path) {
    if (endsWith(path, ".tif")) {
    	open(path);
-	runMacro("/Users/thomasvuillaume/Work/Dev/neuronDetector/fiji_macro/Macro_final.ijm");
+	runMacro("3d_counter.ijm");
 	run("Close All");
   }
 }
