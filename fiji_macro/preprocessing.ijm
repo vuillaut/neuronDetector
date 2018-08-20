@@ -1,10 +1,9 @@
+//\\ Video preprocessing to reveal objects illumination above 5 sigma
+
 duplicate=0 // set to 1 if you want to create a duplicate image at each processing step
 
 name=getTitle;
 directory=getDirectory("image");
-
-
-//\\ PRE-PROCESSING PART //\\
 
 
 if(duplicate==1){
@@ -12,9 +11,11 @@ run("Duplicate...", "title=0.tif duplicate");
 selectWindow("0.tif");
 }
 
+//\\ remove 10 first slides
+// run("Slice Remover", "first=1 last=10 increment=1");
 
 /*
-// --- part to uncomment in case of calibration issues with the camera, 
+// --- part to uncomment in case of calibration issues with the camera,
 // such as strong illumination in the first slides
 // or varying mean illumination during data taking
 
@@ -30,8 +31,6 @@ for (i=1; i<=nSlices; i++) {
   run("Subtract...", "value=" + mean);
 }
 */
-
-
 
 //\\ Subtract the video median to each slice.
 //\\ Thus, this operation keeps only intensity variations from the median.
@@ -52,7 +51,6 @@ else{
 imageCalculator("Subtract create stack", name,"MED_"+name);
 close(name);
 }
-
 
 
 selectWindow("Result of " + name);
@@ -92,19 +90,3 @@ run("Duplicate...", "title=5.tif duplicate");
 }
 
 run("Remove Outliers...", "radius=2 threshold=2 which=Dark stack");
-
-
-//\\ ANALYSIS PART //\\
-
-
-//\\ 2D object counter
-//\\ Count the number of neuron in each image and save the results in a .csv file
-for (i=1; i<=nSlices; i++) {
-	setSlice(i);
-	run("Nucleus Counter", "smallest=100 largest=10000 threshold=Current smooth=[Mean 3x3] add show");
-}
-
-selectWindow("Summary");
-saveAs("Results", directory + replace(name, ".tif", "")  + "_results_2dcounter.csv");
-
-close();

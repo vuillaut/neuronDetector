@@ -1,7 +1,16 @@
-//\\ remove 10 first slides
-run("Slice Remover", "first=1 last=10 increment=1");
+
+
 name=getTitle;
 directory=getDirectory("image");
+
+
+/*
+// --- part to uncomment in case of calibration issues with the camera,
+// such as strong illumination in the first slides
+// or varying mean illumination during data taking
+
+//\\ remove 10 first slides
+run("Slice Remover", "first=1 last=10 increment=1");
 
 //\\ for each image, subtract its mean intensity
 //\\ - this is done in order to compensate the mean luminosity variations
@@ -11,6 +20,9 @@ for (i=1; i<=nSlices; i++) {
   mean = getResult("Mean");
   run("Subtract...", "value=" + mean);
 }
+*/
+
+
 
 //\\ Subtract the video median to each slice.
 //\\ Thus, this operation keeps only intensity variations from the median.
@@ -40,12 +52,13 @@ run("Convert to Mask", "method=Triangle background=Dark");
 // run("Duplicate...", "title=6.tif duplicate");
 run("Remove Outliers...", "radius=2 threshold=2 which=Dark stack");
 
+
 //\\ 3d objects counter
 //\\ Count the number of neuron in the video (taking into account the time dimension)
 //\\ and save the results in a .csv file and the object map in a .tif file
 run("3D Objects Counter", "threshold=2 slice=12 min.=400 max.=10000 objects statistics summary");
 setOption("BlackBackground", false);
 run("RGB Color");
-saveAs("Tiff", directory + name + "_objects_maps.tif");
+saveAs("Tiff", directory + replace(name, ".tif", "") + "_objects_maps.tif");
 selectWindow("Statistics for " + name);
-saveAs("Results", directory + name + "_results.csv");
+saveAs("Results", directory + replace(name, ".tif", "") + "_results_3dcounter.csv");
