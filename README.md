@@ -2,17 +2,13 @@
 Detect activated neurons in video files
 Project started in May 2018 to analyse videos of neurons on chips.
 
-## TODO
+## Fiji script
 
-- use 3D object counter
+### 2d counter
 
-OR
+Steps:
+- remove first images
 
-- study thresholds (see auto threshold macro in ImageJ)
-- find a good automated threshold algorithm
-- apply the threshold in the macro
-- segmentation (2d or 3d)
-- count objects
 
 ## Do it with Fiji (ImageJ)
 
