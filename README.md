@@ -2,6 +2,9 @@
 Detect activated neurons in video files
 Project started in May 2018 to analyse videos of neurons on chips.
 
+Find the published stable version here:
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1400718.svg)](https://doi.org/10.5281/zenodo.1400718)
+
 ## Fiji script
 
 ### 2d counter
