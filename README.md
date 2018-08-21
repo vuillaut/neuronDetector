@@ -13,6 +13,8 @@ Find the published stable version here:
 
 - 3d counter
 
+- batch processing
+
 ### Bibliography
 
 Some useful resources
