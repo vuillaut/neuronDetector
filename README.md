@@ -1,6 +1,8 @@
 # neuronDetector
-Detect activated neurons in video files
-Project started in May 2018 to analyse videos of neurons on chips.
+Scripts to detect activated neurons in video files   
+_Project started in May 2018 to analyse videos of neurons on chips._
+
+authors: Thomas Vuillaume, Marina Messina Aletheia   
 
 Find the published stable version here:    
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1400718.svg)](https://doi.org/10.5281/zenodo.1400718)
